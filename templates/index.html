@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Recherche de Film</title>
+</head>
+<body>
+    <h1>Recherche de Film TMDB</h1>
+    
+    <form method="POST">
+        <label for="movie_id">ID du film :</label>
+        <input type="text" name="movie_id" required>
+        <button type="submit">Rechercher</button>
+    </form>
+
+    {% if movie %}
+        <h2>{{ movie.title }} ({{ movie.release_date }})</h2>
+        <p><strong>Genres :</strong> {{ ", ".join(movie.genres) }}</p>
+        <p><strong>Popularité :</strong> {{ movie.popularity }}</p>
+        <p><strong>Note Moyenne :</strong> {{ movie.vote_average }}</p>
+        <p><strong>Synopsis :</strong> {{ movie.overview }}</p>
+        <img src="{{ movie.poster_path }}" alt="Affiche du film">
+    {% endif %}
+</body>
+</html>
