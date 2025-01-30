@@ -5,6 +5,16 @@
     <title>Combat Pokémon</title>
 </head>
 <body>
+     <!-- Affichage des messages flash -->
+     {% with messages = get_flashed_messages(with_categories=true) %}
+     {% if messages %}
+         <ul>
+             {% for category, message in messages %}
+                 <li class="{{ category }}">{{ message }}</li>
+             {% endfor %}
+         </ul>
+     {% endif %}
+ {% endwith %}
     <h1>Simuler un combat Pokémon</h1>
     <form method="POST">
         <input type="text" name="pokemon1" placeholder="Nom du Pokémon 1" required>
