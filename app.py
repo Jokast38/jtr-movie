@@ -32,15 +32,21 @@ def get_movie_details(movie_id):
     else:
         return None
 
-# Route principale avec formulaire de recherche
+def get_latest_movies():
+    url = f'https://api.themoviedb.org/3/movie/now_playing?api_key={TMDB_API_KEY}&language=fr-FR&page=1'
+    response = requests.get(url)
+    return response.json().get('results', [])
+
+# Route principale avec formulaire de recherche    
 @app.route("/", methods=["GET", "POST"])
 def home():
     movie = None
+    latest_movies = get_latest_movies()
     if request.method == "POST":
         movie_id = request.form["movie_id"]
         movie = get_movie_details(movie_id)
     
-    return render_template("index.html", movie=movie)
+    return render_template("index.html", latest_movies=latest_movies, movie=movie)
 
 if __name__ == "__main__":
     app.run(debug=True)

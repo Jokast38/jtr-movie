@@ -43,19 +43,3 @@ img {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
 }
-
-.latest-movies {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.movie {
-    flex: 1 1 calc(33.333% - 20px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    overflow: hidden;
-    background-color: white;
-    text-align: center;
-    padding: 10px;
-}
