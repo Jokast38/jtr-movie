@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Combat Pokémon</title>
+</head>
+<body>
+    <h1>Simuler un combat Pokémon</h1>
+    <form method="POST">
+        <input type="text" name="pokemon1" placeholder="Nom du Pokémon 1" required>
+        <input type="text" name="pokemon2" placeholder="Nom du Pokémon 2" required>
+        <button type="submit">Lancer le combat</button>
+    </form>
+
+    {% if battle_result %}
+        <h2>Résultat du combat</h2>
+        <p>🏆 Gagnant : {{ battle_result.winner }}</p>
+        <p>PV restants : {{ request.form["pokemon1"] }} ({{ battle_result.p1_hp }}), {{ request.form["pokemon2"] }} ({{ battle_result.p2_hp }})</p>
+    {% endif %}
+</body>
+</html>

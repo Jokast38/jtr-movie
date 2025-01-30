@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>PokéWorld</title>
+</head>
+<body>
+    <h1>PokéWorld</h1>
+
+    <!-- Recherche d'un Pokémon -->
+    <h2>Rechercher un Pokémon</h2>
+    <form method="POST">
+        <input type="text" name="pokemon_name" placeholder="Nom ou ID du Pokémon" required>
+        <button type="submit">Chercher</button>
+    </form>
+
+    {% if pokemon %}
+        <h3>{{ pokemon.name }}</h3>
+        <img src="{{ pokemon.sprite }}" alt="Image de {{ pokemon.name }}">
+        <p>💖 PV : {{ pokemon.hp }}</p>
+        <p>⚔️ Attaque : {{ pokemon.attack }}</p>
+        <p>🛡️ Défense : {{ pokemon.defense }}</p>
+        <p>🔥 Types : {{ ", ".join(pokemon.types) }}</p>
+    {% endif %}
+
+    <!-- Comparaison entre deux Pokémon -->
+    <h2>Comparer deux Pokémon</h2>
+    <form method="POST">
+        <input type="text" name="pokemon1" placeholder="Nom du Pokémon 1" required>
+        <input type="text" name="pokemon2" placeholder="Nom du Pokémon 2" required>
+        <button type="submit">Comparer</button>
+    </form>
+
+    {% if comparison %}
+        <h3>Comparaison</h3>
+        <p><strong>{{ comparison.pokemon1.name }}</strong> vs <strong>{{ comparison.pokemon2.name }}</strong></p>
+        <p>{{ "🏆" if comparison.stronger else "❌" }} Le plus fort en attaque : {{ comparison.pokemon1.name if comparison.stronger else comparison.pokemon2.name }}</p>
+    {% endif %}
+
+    <!-- Recherche par type -->
+    <h2>Statistiques des Pokémon d'un type</h2>
+    <form method="POST">
+        <input type="text" name="pokemon_type" placeholder="Type (fire, water, grass...)" required>
+        <button type="submit">Rechercher</button>
+    </form>
+
+    {% if type_info %}
+        <h3>Type: {{ request.form['pokemon_type'].capitalize() }}</h3>
+        <p>Nombre de Pokémon : {{ type_info.count }}</p>
+        <p>Moyenne des PV : {{ type_info.avg_hp }}</p>
+    {% endif %}
+</body>
+</html>
